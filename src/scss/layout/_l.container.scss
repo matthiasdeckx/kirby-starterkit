@@ -1,0 +1,16 @@
+//Container
+//Acts like a wrapper/inner div
+
+.l-container {
+	@include container();
+	padding-top: $padding/2;
+	padding-bottom: $padding/2;
+}
+
+.l-container--page {
+	@include container();
+}
+
+.l-container-item {
+	@include container-item();
+}

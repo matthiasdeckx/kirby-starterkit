@@ -1,0 +1,77 @@
+//Utility classes for visibility states
+
+.u-hidden {
+  display: none !important;
+}
+
+.u-visible {
+  display: block !important;
+}
+
+.u-visible-inline {
+  display: inline !important;
+}
+
+.u-visible-inline-block {
+  display: inline-block !important;
+}
+
+.u-visible-flex {
+  display: flex !important;
+}
+
+.u-visible-inline-flex {
+  display: inline-flex !important;
+}
+
+.u-visible-min-br-small {
+	display: none !important;
+	@include mq-min-w(small) {
+		display: block !important;
+	}
+}
+
+.u-visible-min-br-medium {
+	display: none !important;
+	@include mq-min-w(med) {
+		display: block !important;
+	}
+}
+
+.u-visible-min-br-med-small {
+	display: none !important;
+	@include mq-min-w(med-sm) {
+		display: block !important;
+	}
+}
+
+.u-visible-min-br-large {
+	display: none !important;
+	@include mq-min-w(large) {
+		display: block !important;
+	}
+}
+
+.u-hidden-max-br-small {
+  @include media-query(sm) {
+		display: none !important;
+	}
+}
+
+.u-hidden-max-br-medium {
+	@include media-query(med) {
+		display: none !important;
+	}
+}
+
+.u-hidden-max-br-med-small {
+  @include media-query(med-sm) {
+		display: none !important;
+	}
+}
+
+.u-hidden-max-br-large {
+  @include media-query(large) {
+		display: none !important;
+	}
+}

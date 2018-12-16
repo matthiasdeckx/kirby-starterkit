@@ -1,0 +1,18 @@
+//Container
+//Acts like a wrapper/inner div
+
+.l-section {
+	@include section();
+}
+
+.l-section--padding {
+	@include section--padding();
+}
+
+.l-section--padding--less {
+	@include section--padding--less();
+}
+
+.l-section--padding--more {
+	@include section--padding--more();
+}

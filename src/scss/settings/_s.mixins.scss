@@ -1,0 +1,761 @@
+// Mixins
+
+@mixin clear() {
+  &:before,
+  &:after {
+      content: " ";
+      display: table;
+  }
+
+  &:after {
+      clear: both;
+  }
+}
+
+@mixin parent-behaviour() {
+    //position:relative;
+    overflow:hidden;
+    display:block;
+    @include clear;
+}
+
+@mixin child-overlay-behaviour() {
+    position:absolute;
+    top:0; bottom:0; left:0; right:0;
+    width:100%;
+    height:100%;
+}
+
+@mixin overlay($width: 100%, $height: 100%, $z-index: 999, $background: #000000) {
+  position:fixed;
+  top: 0;
+  bottom:0;
+  left:0;
+  right:0;
+  width:100%;
+  height:100%;
+  pointer-events: none;
+  overflow: hidden;
+  display:block;
+  -webkit-overflow-scrolling: touch;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+
+  z-index: $z-index;
+  background-color: $background;
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+}
+
+@mixin icon-background($icon) {
+    background-image: url($icon);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+@mixin mq($media) {
+    @if $media == webkit {
+        @media screen and (-webkit-min-device-pixel-ratio: 0) {
+            @content;
+        }
+    }
+
+    @else if $media == retina {
+        @media screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            @content;
+        }
+    }
+
+    @else {
+        @media screen and (max-width: $media) {
+            @content;
+        }
+    }
+}
+
+@mixin mq-min-w($min) {
+    @media screen and (min-width: $min) {
+        @content;
+    }
+}
+
+@mixin mq-max-h($max) {
+    @media screen and (max-height: $max) {
+        @content;
+    }
+}
+
+@mixin mq-min-h($min) {
+    @media screen and (min-height: $min) {
+        @content;
+    }
+}
+
+@mixin mq-min-max($min, $max) {
+    @media screen and (min-width: $min) and (max-width: $max) {
+        @content;
+    }
+}
+
+@mixin mq-min-w-max-h($min, $max) {
+    @media screen and (min-width: $min) and (max-height: $max) {
+        @content;
+    }
+}
+
+@mixin transition ($property, $duration, $timing_function, $delay: 0s) {
+  -webkit-transition-property:        $property;
+  -webkit-transition-duration:        $duration;
+  -webkit-transition-timing-function: $timing_function;
+  -webkit-transition-delay:           $delay;
+
+  -moz-transition-property:           $property;
+  -moz-transition-duration:           $duration;
+  -moz-transition-timing-function:    $timing_function;
+  -moz-transition-delay:              $delay;
+
+  -o-transition-property:             $property;
+  -o-transition-duration:             $duration;
+  -o-transition-timing-function:      $timing_function;
+  -o-transition-delay:                $delay;
+
+  -ms-transition-property:            $property;
+  -ms-transition-duration:            $duration;
+  -ms-transition-timing-function:     $timing_function;
+  -ms-transition-delay:               $delay;
+
+  transition-property:                $property;
+  transition-duration:                $duration;
+  transition-timing-function:         $timing_function;
+  transition-delay:                   $delay;
+}
+
+@mixin reset-transitions(){
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  transition: none;
+}
+
+@mixin animation($animation) {
+  -webkit-animation: $animation;
+  -moz-animation:    $animation;
+  -o-animation:      $animation;
+  animation:         $animation;
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin default-transition($property: all, $delay: 0s){
+  @include transition($property, 200ms, cubic-bezier(0.2, 0.3, 0.25, 0.9), $delay);
+}
+
+@mixin font-loading-transition(){
+  opacity: 0;
+  @include default-transition(opacity);
+  .fonts-loaded &, .no-js &{
+    opacity: 1;
+  }
+}
+
+@mixin box-shadow ($string) {
+  -webkit-box-shadow: $string;
+  -moz-box-shadow:    $string;
+  box-shadow:         $string;
+}
+
+@mixin box-sizing ($type: border-box) {
+  -webkit-box-sizing: $type;
+  -moz-box-sizing:    $type;
+  box-sizing:         $type;
+}
+
+@mixin border-radius ($radius: 3px){
+  -webkit-border-radius:  $radius;
+  -moz-border-radius:     $radius;
+  border-radius:          $radius;
+}
+
+@mixin border-top-radius ($radius: 3px){
+  -webkit-border-top-left-radius:   $radius;
+  -moz-border-top-left-radius:      $radius;
+  border-top-left-radius:           $radius;
+  -webkit-border-top-right-radius:  $radius;
+  -moz-border-top-right-radius:     $radius;
+  border-top-right-radius:          $radius;
+}
+
+@mixin transform($transforms){
+  -moz-transform:     $transforms;
+  -o-transform:       $transforms;
+  -ms-transform:      $transforms;
+  -webkit-transform:  $transforms;
+  transform:          $transforms;
+}
+
+@mixin rotate($deg:180deg){
+  @include transform(rotate($deg));
+  -webkit-backface-visibility: hidden;
+}
+
+@mixin remove-appearance(){
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+@mixin ellipsis(){
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: to;
+}
+
+@mixin placeholder($color){
+  ::-webkit-input-placeholder {
+      color: $color;
+  }
+  :-moz-placeholder {
+      color: $color;
+  }
+  ::-moz-placeholder {
+      color: $color;
+  }
+  :-ms-input-placeholder {
+      color: $color;
+  }
+}
+
+@mixin gradient($color, $from, $to){
+  background: rgba($color, 0);
+  background: -moz-linear-gradient(top, rgba($color,0) $from, rgba($color, 1) $to);
+  background: -webkit-gradient(left top, left bottom, color-stop(from, rgba($color, 0)), color-stop($to, rgba($color, 1)));
+  background: -webkit-linear-gradient(top, rgba($color, 0) $from, rgba($color, 1) $to);
+  background: -o-linear-gradient(top, rgba($color, 0) $from, rgba($color, 1) $to);
+  background: -ms-linear-gradient(top, rgba($color, 0) $from, rgba($color, 1) $to);
+  background: linear-gradient(to bottom, rgba($color, 0) $from, rgba($color, 1) $to);
+}
+
+/* =========================================================================  */
+/* Resets */
+/* =========================================================================  */
+
+/**
+ * Resets list styles.
+ */
+@mixin list-reset {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+/**
+ * Resets button styles for a common cross-browser base.
+ */
+@mixin button-reset {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    font: inherit;
+}
+
+/**
+ * Resets input styles for a common cross-browser base.
+ */
+@mixin input-reset {
+    border-radius: 0;
+    appearance: none;
+}
+
+/* =========================================================================  */
+/* Layout */
+/* =========================================================================  */
+
+/**
+ * Wraps the bracketed @content into a media query matching
+ * the given breakpoint key.
+ *
+ * @param {String} $from - the min-width breakpoint.
+ * @param {String} $to - the max-width breakpoint (optional).
+ *
+ * @requires @variable $layouts-name.
+ * @requires @variable $layouts-break-point.
+ */
+@mixin media-query($from, $to: false) {
+    $from-index: index($layouts-name, $from);
+    $from-breakpoint:
+        if($from-index, nth($layouts-break-point, $from-index), $from);
+
+    @if $to {
+        $to-index: index($layouts-name, $to);
+        $to-breakpoint:
+            if($to-index, nth($layouts-break-point, $to-index), $to) - 1;
+
+        @if ($from-breakpoint == 0) {
+            @media only screen and (max-width: $to-breakpoint) {
+                @content;
+            }
+        } @else {
+            @media only screen and
+            (min-width: $from-breakpoint) and (max-width: $to-breakpoint) {
+                @content;
+            }
+        }
+    } @else {
+        @if ($from-breakpoint == 0) {
+            @content;
+        } @else {
+            @media only screen and (min-width: $from-breakpoint) {
+                @content;
+            }
+        }
+    }
+}
+
+/**
+ * Outputs rules to fit element inside its parent and position it as wanted.
+ *
+ * @param {String} $fit - the `object-fit` value.
+ * @param {String} $position - the `object-position` value.
+ *
+ * 1. Allows IE to read the correct value.
+ *    See: https://github.com/bfred-it/object-fit-images#usage
+ */
+@mixin object-fit($fit: 'fill', $position: null) {
+    object-fit: $fit;
+    @if $position {
+        object-position: $position;
+        font-family: 'object-fit: #{$fit};
+            object-position: #{$position}'; /* [1] */
+    } @else {
+        font-family: 'object-fit: #{$fit}'; /* [1] */
+    }
+}
+
+/**
+ * Clears floating children elements.
+ */
+@mixin clearfix {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+/* =========================================================================  */
+/* Breakpoint loops */
+/* =========================================================================  */
+
+/**
+ * For a given property, outputs the value for a given list of values matching
+ * (binding on index) the $layouts-break-point list.
+ *
+ * @requires @mixin `media-query`.
+ * @requries @variable $layouts-name.
+ *
+ * @requires mixin `media-query`.
+ * @requires @variable $layouts-name.
+ */
+@mixin responsive($arglist...) {
+    $last-results: $arglist;
+    $multiplier: 1;
+    @if ( type-of(nth($arglist, 1)) != 'list' ) {
+        $arglist: $arglist,;
+    }
+    @each $layout-name in $layouts-name {
+        @include media-query($layout-name) {
+            @each $args in $arglist {
+                $i: index($arglist, $args);
+                $property: nth($args, 1);
+                $value: nth($args, 2);
+                $multipliers: if( length($args) >= 3, nth($args, 3), 1 );
+                $adder: if( length($args) >= 4, nth($args, 4), 0 );
+                $string: if( length($args) >= 5, nth($args, 5), '' );
+                @if (type-of($value) != "map") {
+                    $value: ( nth($layouts-name, 1): $value );
+                }
+                @if map-has-key($value, $layout-name) {
+                    @if (type-of($multipliers) == "map") {
+                        $multiplier:
+                            if( map-get($multipliers, $layout-name),
+                            map-get($multipliers, $layout-name), $multiplier );
+                    } @else {
+                        $multiplier: $multipliers;
+                    }
+                    $result:
+                        unquote(multiply-all(map-get($value, $layout-name),
+                        $multiplier, $adder) + $string);
+                    @if ( $result != nth($last-results, $i) ) {
+                        #{$property}: $result;
+                    }
+                    $last-results: set-nth($last-results, $i, $result);
+                }
+            }
+        }
+    }
+}
+
+/* =========================================================================  */
+/* Typography */
+/* =========================================================================  */
+
+/**
+ * Outputs the font-family rule with the fallbak to start with and the webfont
+ * once loaded.
+ *
+ * @param {String} $type - the type of font.
+ *
+ * @requires @variable $sans-serif-fallback
+ * @requires @variable $sans-serif
+ * @requires @variable $sans-serif-fallback
+ * @requires @variable $sans-serif
+ */
+@mixin font-family($type) {
+    @if $type == 'sans-serif' or $type == 'sans' {
+        font-family: $sans-serif-fallback;
+
+        #{$webfonts-class} & {
+            font-family: $sans-serif;
+        }
+    }
+    @elseif $type == 'serif' {
+        font-family: $serif-fallback;
+
+        #{$webfonts-class} & {
+            font-family: $serif;
+        }
+    }
+}
+
+/**
+ * Outputs all properties and values for each breakpoint in a given font map.
+ *
+ * @param {String} $font-map-key - the key to a font map in $fonts.
+ *
+ * @requires @mixin `responsive`.
+ * @requires @mixin `font-family`.
+ * @requires @variable $fonts.
+ */
+@mixin font($font-map-key) {
+    $font-map: map-get($fonts, $font-map-key);
+
+    @each $property, $value in $font-map {
+
+        @if( $property == 'font-family' ) {
+            @include font-family($value);
+        } @else {
+            @include responsive($property, $value);
+        }
+    }
+}
+
+/**
+ * Outputs font size for each breakpoint in a given font map.
+ *
+ * @param {String} $font-map-key - the key to a font map in $fonts.
+ *
+ * @requires @mixin `responsive`.
+ * @requires @variable $fonts.
+ *
+ * 1. Get the font map.
+ * 2. Get the font size map.
+ * 3. Run the responsive mixin with `font-size`
+ *    as property and ``$fs-responsive-map` as map.
+ */
+@mixin font-size-only($font-map-key) {
+    $font-map: map-get($fonts, $font-map-key); /* [1] */
+    $fs-responsive-map: map-get($font-map, 'font-size'); /* [2] */
+    @include responsive('font-size', $fs-responsive-map); /* [3] */
+}
+
+/**
+ * Outputs a font property value from a given property and breakpoint
+ * e.g. : margin: font-property-value('body-sans', 'line-height', 'main');
+ *
+ * @param {String} $font-map-key - the key to a font map in $fonts.
+ * @param {String} $property - the property needed (font-size or line-height).
+ * @param {String} $breakpoint - a breakpoint in $layouts-break-point.
+ *
+ * @requires @variable $fonts.
+ *
+ * 1. Get the font map.
+ * 2. Get the property map.
+ * 3. Return the value at a specific breakpoint
+ */
+@function font-property-value($font-map-key, $property, $breakpoint) {
+    $font-map: map-get($fonts, $font-map-key); /* [1] */
+    $font-map-property: map-get($font-map, $property); /* [2] */
+    $font-map-property-value: map-get($font-map-property, $breakpoint);
+    @if $font-map-property-value == '' {
+        @warn 'No values are defined for `#{$property}` at breakpoint `#{$breakpoint}`.';
+    }
+    @return $font-map-property-value; /* [3] */
+}
+
+/**
+ * Outputs all properties for a given font map at a specific breakpoint.
+ *
+ * @param {String} $font-name - the key to a font map in $fonts.
+ * @param {String} $breakpoint - a breakpoint in $layouts-break-point.
+ *
+ * @requires @mixin `responsive`.
+ * @requires @variable $fonts.
+ * @requires @variable $layouts-break-point.
+ */
+@mixin font-at-breakpoint($font-map-key, $breakpoint) {
+    $font-map: map-get($fonts, $font-map-key);
+    @each $property-list in $font-map {
+        $property: nth($property-list, 1);
+        $values-map: nth($property-list, 2);
+        @if map-has-key($values-map, $breakpoint) {
+            #{$property}: map-get($values-map, $breakpoint);
+        }
+        @else {
+            @warn 'No values are defined for `#{$property}`
+            at breakpoint `#{$breakpoint}`.';
+        }
+    }
+}
+
+/* =========================================================================  */
+/* Visibility */
+/* =========================================================================  */
+
+/**
+ * Hides content visually.
+ */
+@mixin visually-hidden {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/**
+ * Reverts visibility of visually hidden element.
+ */
+@mixin all-screens {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: auto;
+}
+
+/* =========================================================================  */
+/* Interactivity */
+/* =========================================================================  */
+
+/**
+ * @mixin `interaction`
+ *
+ * Outputs bracketed @content as focus state, as well as
+ * breakpoint-based hover state.
+ *
+ * @param {String} $altering-element - a CSS selector for the element
+ *     that will inherit the rules, space-prefixed if not pseudo-element.
+ * @param {Bool} $remove-outline - whether to remove the outline or not.
+ * @param {String} $from-breakpoint - a breakpoint in $layouts-break-point.
+ *
+ * @requires mixin `media-query`.
+ * @requires @variable $layouts-break-point.
+ */
+@mixin interaction($altering-element: null,
+$remove-outline: true, $from-breakpoint: 'l') {
+
+    @if $altering-element {
+        @if $remove-outline {
+            &:focus {
+                outline: none;
+            }
+        }
+        &:focus#{$altering-element} {
+            @content;
+        }
+    }
+    @else {
+        &:focus {
+            @if $remove-outline {
+                outline: none;
+            }
+            @content;
+        }
+    }
+
+    @include media-query($from-breakpoint) {
+        @if $altering-element {
+            &:hover#{$altering-element} {
+                @content;
+            }
+        }
+        @else {
+            &:hover {
+                @content;
+            }
+        }
+    }
+}
+
+/**
+ * Expands the target area of the inner link to the boundaries
+ * of the current CSS selector.
+ *
+ * @param {String} $link-selector - a CSS selector
+ *     for the inner link (optional).
+ * @param {String} $pseudo-element - `before` or `after` (optional).
+ * @param {Int} $z-ghost-link - the z-index to apply
+ *     to the pseudo element (optional).
+ */
+@mixin expand-interaction-to-card($link-selector: 'a',
+$pseudo-element: 'before', $z-ghost-link: $z-cards) {
+    position: relative;
+    z-index: $z-ghost-link - 1;
+
+    #{$link-selector}::#{$pseudo-element} {
+        content: ' ';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: $z-ghost-link;
+    }
+}
+
+/* =========================================================================  */
+/* Decoration */
+/* =========================================================================  */
+
+/**
+ * Prevents jump when underline is applied on interaction by presetting the
+ * bottom padding.
+ *
+ * @requires global @variable $underline-bottom-padding.
+ */
+@mixin will-be-underlined {
+    padding-bottom: $underline-bottom-padding;
+}
+
+/**
+ * Underlines text using the background-image technique.
+ *
+ * @param {Bool} $keep-padding - Set to true to keep previously defined bottom padding
+ * @param {String} $y-pos - the position of the underline on the Y axis only if $keep-padding is true (optional).
+ * @param {String} $display - the type of CSS display (optional).
+ * @param {String} $color - the color of the underline (optional).
+ * @param {String} $padding-bottom - the padding added to the bottom of the text string (optional).
+ * @requires global @variable $underline-bottom-padding.
+ * @requires global @variable $underline-thickness.
+ */
+@mixin underline(
+    $keep-padding: true,
+    $y-pos: 100%,
+    $display: inline-block,
+    $color: currentColor,
+    $padding-bottom: $underline-bottom-padding) {
+
+    display: $display;
+    background-image: linear-gradient(to bottom, $color, $color);
+    background-size: 100% $underline-thickness;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    @if $keep-padding != true {
+        background-position: left 0 bottom $padding-bottom * -1;
+        padding-bottom: $padding-bottom;
+    }
+    @else {
+        background-position: 0 $y-pos;
+    }
+}
+
+/**
+ * Sets the color of the underline.
+ *
+ * @param {String} $color - the color of the underline.
+ */
+@mixin underline-color($color) {
+    background-image: linear-gradient(to bottom, $color, $color);
+}
+
+/**
+ * Sets the position of the underline on the Y axis.
+ *
+ * @param {String} $y-pos - the position of the underline on the Y axis.
+ */
+@mixin underline-position($y-pos) {
+    background-position-y: $y-pos;
+}
+
+/**
+ * @mixin `prefix`
+ *
+ * Generates some prefix selector, often associated with a class selector.
+ *
+ * @param `$prefix` {string} or {list} - prefix classname (without the `.`).
+ * @param `$associated-class` {string} - (optional, default: '').
+ *
+ * @example: `@include prefix( ('u-bt', 'u-bg-'), '.classname') { ... }`
+ */
+@mixin prefix( $prefix, $associated-class: '' ) {
+
+    @if( type-of($prefix) == 'list' ) {
+
+        @each $prfx in $prefix {
+
+            #{ $associated-class }[class^="#{ $prfx }"],
+            #{ $associated-class }[class*=" #{ $prfx }"] {
+                @content;
+            }
+        }
+
+    } @else {
+
+        #{ $associated-class }[class^="#{ $prefix }"],
+        #{ $associated-class }[class*=" #{ $prefix }"] {
+            @content;
+        }
+    }
+}
+
+
+// No outline on focus with click
+.s-click-focus {
+    [data-whatintent="mouse"] & {
+        outline: none;
+    }
+}

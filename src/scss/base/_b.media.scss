@@ -1,0 +1,17 @@
+// Media
+// Base selectors for images, video, audio...
+
+img, video {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+img.lazyload,
+img.lazyloading {
+	opacity: 0;
+}
+
+img.lazyloaded {
+	opacity: 1;
+	@include transition(opacity, $speed, $ease);
+}

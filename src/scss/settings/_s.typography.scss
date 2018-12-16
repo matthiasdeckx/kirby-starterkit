@@ -1,0 +1,113 @@
+/* =========================================================================  */
+/* Font Stacks */
+/* =========================================================================  */
+
+/**
+ * Fonts in use during FOUT.
+ */
+$serif-fallback: "Times New Roman", Times, Georgia, serif;
+$sans-serif-fallback: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+/**
+ * Fonts in use after FOUT.
+ */
+$serif: 'Times New Roman', $serif-fallback;
+$sans-serif: 'Helvetica Neue', $sans-serif-fallback;
+
+/**
+ * Main font detection.
+ */
+$main-font-type: 'sans-serif' !default;
+$main-font-fallback: null;
+$main-font: null;
+$main-font-map-key: null;
+@if $main-font-type == 'sans-serif' {
+    $main-font-fallback: $sans-serif-fallback;
+    $main-font: $sans-serif;
+    $main-font-map-key: 'body-sans';
+}
+@else if $main-font-type == 'serif' {
+    $main-font-fallback: $serif-fallback;
+    $main-font: $serif;
+    $main-font-map-key: 'body-serif';
+}
+
+/* =========================================================================  */
+/* Font weights */
+/* =========================================================================  */
+
+$normal: 400;
+$bold: 600;
+
+/* =========================================================================  */
+/* Font maps */
+/* =========================================================================  */
+
+$fonts: (
+
+    'body-sans': (
+        'font-size': (
+            'main': 1.4rem,
+            'sm': 1.6rem,
+            'med': 1.8rem,
+            'large': 2.0rem,
+            'xlarge': 2.4rem
+        ),
+        'line-height': (
+            'main': (18/14),
+            'sm': (20/16),
+            'med': (22.5/16),
+            'large': (25/20),
+            'xlarge': (30/24)
+        )
+    ),
+    'small': (
+        'font-size': (
+            'main': 1.2rem,
+            'sm': 1.4rem,
+            'large': 1.6rem
+        ),
+        'line-height': (
+            'main': (15/12),
+            'sm': (17.5/14),
+            'large': (20/16)
+        )
+    ),
+    'large': (
+        'font-size': (
+            'main': 2.4rem,
+            'med': 3.6rem,
+            'large': 4.0rem
+        ),
+        'line-height': (
+            'main': (37.5/30),
+            'med': (44/36),
+            'large': (50/40)
+        )
+    )
+
+);
+
+/* =========================================================================  */
+/* Font settings */
+/* =========================================================================  */
+
+@mixin font-settings--global() {
+	-webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: 'kern' 1, 'liga' 1, 'ss01' 1;
+  -ms-font-feature-settings: 'kern' 1, 'liga' 1, 'ss01' 1;
+  -o-font-feature-settings: 'kern' 1, 'liga' 1, 'ss01' 1;
+  -webkit-font-feature-settings: 'kern' 1, 'liga' 1, 'ss01' 1;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'ss01' 1;
+}
+
+@mixin font-settings--tnum() {
+	-moz-font-feature-settings: 'kern' 1, 'liga' 1, 'tnum' 1;
+  -ms-font-feature-settings: 'kern' 1, 'liga' 1, 'tnum' 1;
+  -o-font-feature-settings: 'kern' 1, 'liga' 1, 'tnum' 1;
+  -webkit-font-feature-settings: 'kern' 1, 'liga' 1, 'tnum' 1;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'tnum' 1;
+}

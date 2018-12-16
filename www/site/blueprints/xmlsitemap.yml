@@ -1,0 +1,7 @@
+title: Sitemap
+pages: false
+hide: true
+fields:
+  title:
+    label: Title
+    type:  text

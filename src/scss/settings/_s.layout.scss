@@ -1,0 +1,123 @@
+// Layout
+
+/* =========================================================================  */
+/* Variables layout */
+/* =========================================================================  */
+
+//$cols: 12;
+//$cols_m: 12;
+
+/* =========================================================================  */
+/* Layout settings */
+/* =========================================================================  */
+
+$layouts-name:         ( 'main',   'sm',     'med-sm',   'med',      'med-large',    'large',    'xlarge'    );
+$layouts-break-point:  ( 0,        480px,     768px,      1024px,     1280px,         1400px,    1680px       );
+
+$max-container-width: 100%;
+$max-text-width: 50em;
+
+$baseline: 1em;
+$padding: 1em;
+
+/* =========================================================================  */
+/* Layout mix-ins */
+/* =========================================================================  */
+
+@mixin container() {
+  @include parent-behaviour;
+  width: 100%;
+  max-width: $max-container-width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin container-item() {
+  padding-left: $padding;
+  padding-right: $padding;
+}
+
+@mixin section() {
+  @include parent-behaviour;
+}
+
+@mixin section--padding() {
+  @include parent-behaviour;
+  padding-top: $padding/2;
+  padding-bottom: $padding/2;
+}
+
+@mixin section--padding--less() {
+  @include parent-behaviour;
+  padding-top: $padding/4;
+  padding-bottom: $padding/4;
+}
+
+@mixin section--padding--more() {
+  @include parent-behaviour;
+  padding-top: $padding*2;
+  padding-bottom: $padding*2;
+}
+
+@mixin col--padding-bottom() {
+  @include parent-behaviour;
+  padding-bottom: $padding*2;
+}
+
+@mixin row($inside: false) {
+  @if($inside == true) {
+    margin-left: -$padding/2;
+    margin-right: -$padding/2;
+  }
+  @else {
+    @include container();
+    padding-left: $padding/2;
+    padding-right: $padding/2;
+  }
+  &:before, &:after {
+    content: '';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin row-no-padding() {
+  @include container();
+  padding-left: 0;
+  padding-right: 0;
+
+  &:before, &:after {
+    content: '';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin col($width: 1, $paddingBool: true, $centered: false) {
+  @if($centered == true) {
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+  }
+  @else {
+    float: left;
+  }
+  width: percentage($width);
+  @if($paddingBool == true) {
+    padding-left: $padding/2;
+    padding-right: $padding/2;
+  }
+}
+
+@mixin push($width: 0) {
+  //position: relative;
+  margin-left: percentage($width);
+}
+@mixin pull($width: 0) {
+  //position: relative;
+  margin-right: percentage($width);
+}

@@ -1,0 +1,87 @@
+.u-clearfix {
+  @include clear;
+}
+
+.u-display-block {
+	display: block;
+}
+
+.u-vertical-center {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+.u-vertical-center__content {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.u-float--left {
+	float:left !important;
+}
+
+.u-float--mid-left {
+  float:left !important;
+  margin-left: 6.66vw !important;
+}
+
+.u-float--center {
+  float: none !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+.u-float--mid-right {
+  float:right !important;
+  margin-right: 6.66vw !important;
+}
+
+.u-float--right {
+	float:right !important;
+}
+
+.u-fixed--top-left {
+  z-index: $z-sticky;
+}
+
+
+.u-fixed--top-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.u-fixed--top-right {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.u-fixed--bottom-left {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.u-fixed--bottom-right {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.u-no-padding-top {
+  padding-top: 0 !important;
+}
+
+.u-no-padding-bottom {
+  padding-bottom: 0 !important;
+}
+
+.u-no-padding-left {
+  padding-left: 0 !important;
+}
+
+.u-no-padding-right {
+  padding-right: 0 !important;
+}

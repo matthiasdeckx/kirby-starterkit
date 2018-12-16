@@ -2,8 +2,19 @@
   "modules": {
     "core": "https://github.com/getkirby/kirby.git",
     "panel": "https://github.com/getkirby/panel.git",
-    "fields": {},
-    "plugins": {},
+    "fields": {
+      "tabs": "https://github.com/afbora/Kirby-Tabs-Field.git" ,
+      "geolocation": "https://github.com/lekkerduidelijk/kirby-geolocation-field",
+      "builder": "https://github.com/TimOetting/kirby-builder.git"
+    },
+    "plugins": {
+      "field-selector": "https://github.com/storypioneers/kirby-selector.git",
+      "field-multiselect": "https://github.com/distantnative/field-multiselect.git",
+      "field-engineer": "https://github.com/kirby-deprecated-plugins/field-engineer.git",
+      "images": "https://github.com/medienbaecker/kirby-images.git",
+      "embed": "https://github.com/distantnative/embed.git",
+      "cachebuster:": "https://github.com/getkirby-plugins/cachebuster-plugin.git"
+    },
     "tags": {},
     "widgets": {}
   }

@@ -1,0 +1,28 @@
+//Overlay
+.o-overlay {
+	@include overlay(100%, 100%, $z-overlay, $white);
+	opacity: 0;
+	@include transition(opacity, $speed, $ease);
+	&.is-active {
+		pointer-events: auto;
+		opacity: 1;
+		@include transition(opacity, $speed, $ease);
+	}
+}
+
+.o-overlay-black {
+	@include overlay(100%, 100%, $z-overlay, $black);
+	opacity: 0;
+	@include transition(opacity, $speed, $ease);
+	&.is-active {
+		pointer-events: auto;
+		opacity: 1;
+		@include transition(opacity, $speed, $ease);
+	}
+}
+
+.o-overlay__content {
+	width:100%;
+	height:100%;
+	overflow: scroll;
+}

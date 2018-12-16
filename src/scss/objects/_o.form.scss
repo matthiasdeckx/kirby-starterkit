@@ -1,0 +1,22 @@
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+input[type="submit"],
+textarea {
+    @include input-reset;
+}
+
+fieldset {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+button {
+    @include button-reset;
+}
+
+[tabindex="-1"]:focus {
+    outline: none;
+}

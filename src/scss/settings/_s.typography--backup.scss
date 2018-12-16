@@ -1,0 +1,226 @@
+// Font settings
+$sans: 'basis-grotesque-off-white-pro', 'Helvetica Neue', Helvetica, Arial, "Lucida Grande", sans-serif;
+$italic: 'basis-grotesque-off-white-italic-pro', 'Helvetica Neue', Helvetica, Arial, "Lucida Grande", sans-serif;
+$serif: 'TimesNow-SemiLight', 'Times New Roman', Times, serif;
+$normal: 400;
+
+$lineheight: 1.25em;
+
+// Typography
+@mixin font-settings--global() {
+	-webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: 'kern' 1, 'liga' 1, 'ss01' 1;
+  -ms-font-feature-settings: 'kern' 1, 'liga' 1, 'ss01' 1;
+  -o-font-feature-settings: 'kern' 1, 'liga' 1, 'ss01' 1;
+  -webkit-font-feature-settings: 'kern' 1, 'liga' 1, 'ss01' 1;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'ss01' 1;
+}
+
+@mixin font-settings--tnum() {
+	-moz-font-feature-settings: 'kern' 1, 'liga' 1, 'tnum' 1;
+  -ms-font-feature-settings: 'kern' 1, 'liga' 1, 'tnum' 1;
+  -o-font-feature-settings: 'kern' 1, 'liga' 1, 'tnum' 1;
+  -webkit-font-feature-settings: 'kern' 1, 'liga' 1, 'tnum' 1;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'tnum' 1;
+}
+
+@mixin font-size--global() {
+  font-size: 20px;
+	@include media-query(large) {
+		font-size: 18px;
+	}
+	@include media-query(med) {
+		font-size: 16px;
+	}
+	@include media-query(sm) {
+		font-size: 14px;
+	}
+}
+
+@mixin font-size--large() {
+  font-size: 30px;
+	@include media-query(large) {
+		font-size: 18px;
+	}
+	@include media-query(med) {
+		font-size: 16px;
+	}
+	@include media-query(sm) {
+		font-size: 14px;
+	}
+}
+
+// Different sizes
+@mixin serif--xlarge() {
+	font-family: $serif;
+	font-size: 49px;
+	line-height: $lineheight--large;
+	letter-spacing: -0.0125em;
+	@include mq($br-xlarge) {
+		font-size: 44px;
+	}
+	@include mq($br-med-large) {
+		font-size: 38px;
+	}
+	@include media-query(med) {
+		font-size: 33px;
+	}
+	@include media-query(med-sm) {
+		font-size: 29px;
+	}
+	@include media-query(sm) {
+		font-size: 24px;
+	}
+	@include mq($br-xsmall) {
+		font-size: 22px;
+	}
+}
+
+@mixin serif--large() {
+	font-family: $serif;
+	font-size: 28px;
+	line-height: $lineheight;
+	letter-spacing: 0;
+	@include mq($br-xlarge) {
+		font-size: 25px;
+	}
+	@include mq($br-med-large) {
+		font-size: 22px;
+	}
+	@include media-query(med) {
+		font-size: 19px;
+	}
+	@include media-query(med-sm) {
+		font-size: 22px;
+	}
+	@include media-query(sm) {
+		font-size: 19px;
+	}
+	@include mq($br-xsmall) {
+		font-size: 17px;
+	}
+}
+
+@mixin serif() {
+	font-family: $serif;
+	font-size: 28px;
+	line-height: $lineheight;
+	letter-spacing: 0;
+	@include mq($br-xlarge) {
+		font-size: 25px;
+	}
+	@include mq($br-med-large) {
+		font-size: 22px;
+	}
+	@include media-query(med) {
+		font-size: 19px;
+	}
+	@include media-query(med-sm) {
+		font-size: 22px;
+	}
+	@include media-query(sm) {
+		font-size: 19px;
+	}
+	@include mq($br-xsmall) {
+		font-size: 17px;
+	}
+}
+
+@mixin serif--small() {
+	font-family: $serif;
+	font-size: 16px;
+	line-height: $lineheight--small;
+	letter-spacing: 0;
+	@include mq($br-xlarge) {
+		font-size: 15px;
+	}
+	@include mq($br-med-large) {
+		font-size: 14px;
+	}
+	@include media-query(med) {
+		font-size: 13px;
+	}
+	@include media-query(med-sm) {
+		font-size: 14px;
+	}
+	@include media-query(sm) {
+		font-size: 13px;
+	}
+	@include mq($br-xsmall) {
+		font-size: 12px;
+	}
+}
+
+@mixin sans--italic() {
+	font-family: $italic !important;
+	font-style: normal;
+}
+
+// Typography
+@mixin sans--xlarge() {
+	font-family: $sans;
+	font-size: 49px;
+	line-height: $lineheight--large;
+	letter-spacing: -0.0125em;
+	@include mq($br-xlarge) {
+		font-size: 44px;
+	}
+	@include mq($br-med-large) {
+		font-size: 38px;
+	}
+	@include media-query(med) {
+		font-size: 33px;
+	}
+	@include media-query(med-sm) {
+		font-size: 29px;
+	}
+	@include media-query(sm) {
+		font-size: 24px;
+	}
+	@include mq($br-xsmall) {
+		font-size: 22px;
+	}
+}
+
+@mixin sans--large() {
+	font-family: $sans;
+	line-height: $lineheight;
+}
+
+@mixin sans() {
+	font-family: $sans;
+	line-height: $lineheight;
+}
+
+@mixin sans--small() {
+	font-family: $sans;
+	font-size: 14px;
+	line-height: $lineheight--small;
+	letter-spacing: 0.01em;
+	@include mq($br-xlarge) {
+		font-size: 13px;
+	}
+	@include mq($br-med-large) {
+		font-size: 12px;
+	}
+	@include media-query(med) {
+		font-size: 11px;
+	}
+	@include media-query(med-sm) {
+		font-size: 12px;
+	}
+	@include media-query(sm) {
+		font-size: 11px;
+	}
+	@include mq($br-xsmall) {
+		font-size: 10px;
+	}
+}
+
+@mixin serif--italic() {
+	font-family: $serif;
+	font-style: normal;
+}

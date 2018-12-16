@@ -8,8 +8,8 @@ const path = require('path')
  * The builds folder in www/assets is auto cleaned after each build.
  */
 const entries = {
-  'src/index.js': 'www/assets/js/main.js',
-  'src/index.scss': 'www/assets/css/main.css'
+  'src/js/main.js': 'www/assets/js/main.js',
+  'src/scss/main.scss': 'www/assets/css/main.css'
 }
 
 /**

@@ -1,0 +1,132 @@
+.l-col-12 { @include col(12/12); }
+.l-col-11 { @include col(11/12); }
+.l-col-10 { @include col(10/12); }
+.l-col-9 { @include col(9/12); }
+.l-col-8 { @include col(8/12); }
+.l-col-7 { @include col(7/12); }
+.l-col-6 { @include col(6/12); }
+.l-col-5 { @include col(5/12); }
+.l-col-4 { @include col(4/12); }
+.l-col-3 { @include col(3/12); }
+.l-col-2 { @include col(2/12); }
+.l-col-1 { @include col(1/12); }
+.l-col-12--no-padding { @include col(12/12, false); }
+.l-col-11--no-padding { @include col(11/12, false); }
+.l-col-10--no-padding { @include col(10/12, false); }
+.l-col-9--no-padding { @include col(9/12, false); }
+.l-col-8--no-padding { @include col(8/12, false); }
+.l-col-7--no-padding { @include col(7/12, false); }
+.l-col-6--no-padding { @include col(6/12, false); }
+.l-col-5--no-padding { @include col(5/12, false); }
+.l-col-4--no-padding { @include col(4/12, false); }
+.l-col-3--no-padding { @include col(3/12, false); }
+.l-col-2--no-padding { @include col(2/12, false); }
+.l-col-1--no-padding { @include col(1/12, false); }
+
+@include media-query(large) {
+	.l-col-lg-12 { @include col(12/12); }
+	.l-col-lg-11 { @include col(11/12); }
+	.l-col-lg-10 { @include col(10/12); }
+	.l-col-lg-9 { @include col(9/12); }
+	.l-col-lg-8 { @include col(8/12); }
+	.l-col-lg-7 { @include col(7/12); }
+	.l-col-lg-6 { @include col(6/12); }
+	.l-col-lg-5 { @include col(5/12); }
+	.l-col-lg-4 { @include col(4/12); }
+	.l-col-lg-3 { @include col(3/12); }
+	.l-col-lg-2 { @include col(2/12); }
+	.l-col-lg-1 { @include col(1/12); }
+	.l-col-lg-12--no-padding { @include col(12/12, false); }
+	.l-col-lg-11--no-padding { @include col(11/12, false); }
+	.l-col-lg-10--no-padding { @include col(10/12, false); }
+	.l-col-lg-9--no-padding { @include col(9/12, false); }
+	.l-col-lg-8--no-padding { @include col(8/12, false); }
+	.l-col-lg-7--no-padding { @include col(7/12, false); }
+	.l-col-lg-6--no-padding { @include col(6/12, false); }
+	.l-col-lg-5--no-padding { @include col(5/12, false); }
+	.l-col-lg-4--no-padding { @include col(4/12, false); }
+	.l-col-lg-3--no-padding { @include col(3/12, false); }
+	.l-col-lg-2--no-padding { @include col(2/12, false); }
+	.l-col-lg-1--no-padding { @include col(1/12, false); }
+}
+
+@include media-query(med) {
+	.l-col-md-12 { @include col(12/12); }
+	.l-col-md-11 { @include col(11/12); }
+	.l-col-md-10 { @include col(10/12); }
+	.l-col-md-9 { @include col(9/12); }
+	.l-col-md-8 { @include col(8/12); }
+	.l-col-md-7 { @include col(7/12); }
+	.l-col-md-6 { @include col(6/12); }
+	.l-col-md-5 { @include col(5/12); }
+	.l-col-md-4 { @include col(4/12); }
+	.l-col-md-3 { @include col(3/12); }
+	.l-col-md-2 { @include col(2/12); }
+	.l-col-md-1 { @include col(1/12); }
+	.l-col-md-12--no-padding { @include col(12/12, false); }
+	.l-col-md-11--no-padding { @include col(11/12, false); }
+	.l-col-md-10--no-padding { @include col(10/12, false); }
+	.l-col-md-9--no-padding { @include col(9/12, false); }
+	.l-col-md-8--no-padding { @include col(8/12, false); }
+	.l-col-md-7--no-padding { @include col(7/12, false); }
+	.l-col-md-6--no-padding { @include col(6/12, false); }
+	.l-col-md-5--no-padding { @include col(5/12, false); }
+	.l-col-md-4--no-padding { @include col(4/12, false); }
+	.l-col-md-3--no-padding { @include col(3/12, false); }
+	.l-col-md-2--no-padding { @include col(2/12, false); }
+	.l-col-md-1--no-padding { @include col(1/12, false); }
+}
+
+@include media-query(med-sm) {
+	.l-col-mdsm-12 { @include col(12/12); }
+	.l-col-mdsm-11 { @include col(11/12); }
+	.l-col-mdsm-10 { @include col(10/12); }
+	.l-col-mdsm-9 { @include col(9/12); }
+	.l-col-mdsm-8 { @include col(8/12); }
+	.l-col-mdsm-7 { @include col(7/12); }
+	.l-col-mdsm-6 { @include col(6/12); }
+	.l-col-mdsm-5 { @include col(5/12); }
+	.l-col-mdsm-4 { @include col(4/12); }
+	.l-col-mdsm-3 { @include col(3/12); }
+	.l-col-mdsm-2 { @include col(2/12); }
+	.l-col-mdsm-1 { @include col(1/12); }
+	.l-col-mdsm-12--no-padding { @include col(12/12, false); }
+	.l-col-mdsm-11--no-padding { @include col(11/12, false); }
+	.l-col-mdsm-10--no-padding { @include col(10/12, false); }
+	.l-col-mdsm-9--no-padding { @include col(9/12, false); }
+	.l-col-mdsm-8--no-padding { @include col(8/12, false); }
+	.l-col-mdsm-7--no-padding { @include col(7/12, false); }
+	.l-col-mdsm-6--no-padding { @include col(6/12, false); }
+	.l-col-mdsm-5--no-padding { @include col(5/12, false); }
+	.l-col-mdsm-4--no-padding { @include col(4/12, false); }
+	.l-col-mdsm-3--no-padding { @include col(3/12, false); }
+	.l-col-mdsm-2--no-padding { @include col(2/12, false); }
+	.l-col-mdsm-1--no-padding { @include col(1/12, false); }
+}
+
+@include media-query(sm) {
+	.l-col-sm-12 { @include col(12/12); }
+	.l-col-sm-11 { @include col(11/12); }
+	.l-col-sm-10 { @include col(10/12); }
+	.l-col-sm-9 { @include col(9/12); }
+	.l-col-sm-8 { @include col(8/12); }
+	.l-col-sm-7 { @include col(7/12); }
+	.l-col-sm-6 { @include col(6/12); }
+	.l-col-sm-5 { @include col(5/12); }
+	.l-col-sm-4 { @include col(4/12); }
+	.l-col-sm-3 { @include col(3/12); }
+	.l-col-sm-2 { @include col(2/12); }
+	.l-col-sm-1 { @include col(1/12); }
+	.l-col-sm-12--no-padding { @include col(12/12, false); }
+	.l-col-sm-11--no-padding { @include col(11/12, false); }
+	.l-col-sm-10--no-padding { @include col(10/12, false); }
+	.l-col-sm-9--no-padding { @include col(9/12, false); }
+	.l-col-sm-8--no-padding { @include col(8/12, false); }
+	.l-col-sm-7--no-padding { @include col(7/12, false); }
+	.l-col-sm-6--no-padding { @include col(6/12, false); }
+	.l-col-sm-5--no-padding { @include col(5/12, false); }
+	.l-col-sm-4--no-padding { @include col(4/12, false); }
+	.l-col-sm-3--no-padding { @include col(3/12, false); }
+	.l-col-sm-2--no-padding { @include col(2/12, false); }
+	.l-col-sm-1--no-padding { @include col(1/12, false); }
+}

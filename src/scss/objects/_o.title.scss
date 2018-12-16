@@ -1,0 +1,11 @@
+.o-title {
+    @include font('large');
+}
+
+.o-title--small {
+    @include font('small');
+}
+
+.o-title--body {
+    @include font('body-sans');
+}

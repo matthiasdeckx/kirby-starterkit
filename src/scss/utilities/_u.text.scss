@@ -1,0 +1,41 @@
+//Text utilities
+
+// Align center
+.u-text-center {
+    text-align: center !important;
+}
+
+//Align right
+.u-text-right {
+    text-align: right !important;
+}
+
+.u-text-uppercase {
+	text-transform: uppercase !important;
+}
+
+.u-text-default {
+	text-transform: none !important;
+}
+
+// Dimmed text
+.u-text-dimmed {
+  opacity: 0.5 !important;
+}
+
+.u-text-dimmed-interactive {
+  opacity: 0.5 !important;
+  &:hover {
+    opacity: 1;
+  }	
+}
+
+// Removes margins (from paragraphs of text).
+.u-text-tight {
+    margin: 0 !important;
+}
+
+// No underlines
+.u-text-no-underline {
+    border-bottom-width: 0 !important;
+}

@@ -1,0 +1,233 @@
+/* =========================================================================  */
+/* Maths */
+/* =========================================================================  */
+
+/**
+ * Returns a given list with each value multiplied by the given multiplier,
+ * and optionnally adjusts the result of each multiplication with
+ * the given margin.
+ *
+ * @param {List} $values - a list of numbers.
+ * @param {Int} $multiplier - the multiplier.
+ * @param {Int} $margin - A positive/negative number (optional).
+ */
+@function multiply-all($values, $multiplier, $margin: 0) {
+    @for $n from 1 through length($values) {
+        @if type-of(nth($values, $n)) == 'number' {
+            $values: set-nth($values, $n, nth($values, $n) * $multiplier
+                + $margin);
+        }
+    }
+    @return $values;
+}
+
+/**
+ * Returns the value to be set as spacing for the inner element to be positioned
+ * where we want it when contained in a wider, touch-friendly area.
+ *
+ * E.g. for an icon of 16x16, we want the user to be able to tap it easily, so
+ * the outer `a` element is set to a width of 44px. We want the icon to be
+ * positioned 20px from the viewport edge. The function will return the right
+ * value to be set as X position for the `a`, in that case 6px.
+ *
+ * @param {String} $el-length - the width/height of the visible element.
+ * @param {String} - $el-to-edge-distance — the distance between the element
+ *     and the edge of the closest positioned parent.
+ * @param {String} - $touch-area-length - the width/height of the
+ *     touch area (optional).
+ */
+@function compensate-touch-area( $el-length, $el-to-edge-distance,
+$touch-area-length: 44px ) {
+    @return $el-to-edge-distance - (( $touch-area-length - $el-length) / 2);
+}
+
+/* =========================================================================  */
+/* List helpers */
+/* =========================================================================  */
+
+/**
+ * Returns the first element of a given list.
+ *
+ * @param {List} $list - a list.
+ */
+@function first($list) {
+    @return nth($list, 1);
+}
+
+/**
+ * Returns the last element of a given list.
+ *
+ * @param {List} $list - a list.
+ */
+@function last($list) {
+    @return nth($list, length($list));
+}
+
+/**
+ * Transforms a list into a map, matching a given list of keys
+ * with a given list of values.
+ *
+ * @param {List} $keys-list - a list of keys for the map.
+ * @param {List} $values-list - a list of values for the map.
+ */
+@function lists-to-map($keys-list, $values-list) {
+    $map: ();
+    @for $n from 1 through length($keys-list) {
+        $map: map-merge(
+            $map,
+            (nth($keys-list, $n): nth($values-list, $n))
+        );
+    }
+    @return $map;
+}
+
+/* =========================================================================  */
+/* Units */
+/* =========================================================================  */
+
+/**
+ * Returns a rem-based value from a px-based input.
+ *
+ * @param {String} $px-value - eg. 16px.
+ * @param {String} $base-font-size - eg. 16px (optional).
+ *
+ * @requires @function `base-font-size`.
+ */
+@function rem($px-value, $base-font-size: base-font-size('body')) {
+    $rem: $px-value / $base-font-size;
+    @return #{$rem}rem;
+}
+
+/**
+ * Returns an em-based value from a px-based input.
+ *
+ * @param {String} $px-value - eg. 16px.
+ * @param {String} $base-font-size - eg. 16px (optional).
+ *
+ * @requires @function `base-font-size`.
+ */
+@function em($px-value, $base-font-size: base-font-size('body')) {
+    $em: $px-value / $base-font-size;
+    @return #{$em}em;
+}
+
+/* =========================================================================  */
+/* Typography */
+/* =========================================================================  */
+
+/**
+ * Returns the font size defined for the given font map key
+ * before any breakpoint kicks in.
+ *
+ * @param {String} $font-map-key - the key for the target font map in $fonts.
+ *
+ * @requires @variable $fonts.
+ *
+ * 1. Get the font map for the given key.
+ * 2. Get the font size map.
+ * 3. Return the font size using the base
+ *    font size.
+ */
+@function base-font-size($font-map-key) {
+    $font-map: map-get($fonts, $font-map-key); /* [1] */
+    $fs-responsive-map: map-get($font-map, 'font-size'); /* [2] */
+    @return map-get($fs-responsive-map, 'main'); /* [3] */
+}
+
+/**
+ * Returns the font size defined for the given font map key
+ * at the given breakpoint.
+ *
+ * @param {String} $font-map-key - the key for the target font map in $fonts.
+ * @param {String} $breakpoint - a breakpoint in
+ *     $layouts-break-point (optional).
+ *
+ * @requires @variable $fonts.
+ *
+ * 1. Get the font map for the given key.
+ * 2. Get the font size map.
+ * 3. Return the font size using provided breakpoint.
+ */
+@function font-size($font-map-key, $breakpoint: 'main') {
+    $font-map: map-get($fonts, $font-map-key); /* [1] */
+    $fs-responsive-map: map-get($font-map, 'font-size'); /* [2] */
+    @return map-get($fs-responsive-map, $breakpoint); /* [3] */
+}
+
+/**
+ * Returns the line height defined for the given font map key
+ * before any breakpoint kicks in.
+ *
+ * @param {String} $font-map-key - the key for the target font map in $fonts.
+ *
+ * @requires @variable $fonts.
+ *
+ * 1. Get the font map for the given key.
+ * 2. Get the line-height map.
+ * 3. Return the line height using the base
+ *    font size.
+ */
+@function base-line-height($font-map-key) {
+    $font-map: map-get($fonts, $font-map-key); /* [1] */
+    $fs-responsive-map: map-get($font-map, 'line-height'); /* [2] */
+    @return map-get($fs-responsive-map, 'main'); /* [3] */
+}
+
+/**
+ * Returns an em-based value from a unitless value.
+ *
+ * @param {Int} $unitless-number - a letter spacing value
+ *     gotten from a design app.
+ */
+@function letter-spacing($unitless-number) {
+    @return #{($unitless-number / 1000)}em;
+}
+
+/* =========================================================================  */
+/* Layout */
+/* =========================================================================  */
+
+/**
+ * Returns a `calc()` that spans the width of a given number of columns.
+ * Useful when styling an element that is already inside a column.
+ *
+ * @param {Int} $cols-wanted - the number of columns that we want.
+ * @param {Int} $cols-parent - the number of columns the element sits in.
+ * @param {String} $breakpoint - the breakpoint at which function is called.
+ *
+ * Example
+ * To span 4 columns in a 10 columns container at breakpoint `l`:
+ * `width: columns-calc(4, 10, 'l');`
+ */
+@function columns-calc($cols-wanted, $cols-parent, $breakpoint) {
+    @return calc( (100% + #{map-get($gutter, $breakpoint)}) *
+        (#{$cols-wanted} / #{$cols-parent}) -
+        #{map-get($gutter, $breakpoint)} );
+}
+
+/**
+ * Returns a `calc()` function including a sum of
+ * the desired max-width + the flexible gutters.
+ *
+ * @param {String} $target-width - the target inner width (optional).
+ *
+ * @requires Susy.
+ */
+@function max-width($target-width: $max-width) {
+    @return calc(#{$target-width} + #{2 * gutter()});
+}
+
+
+/**
+ * Returns a margin value based on the margin X default value
+ */
+@function height-x($amount) {
+    @return $height-x * $amount;
+}
+
+/**
+ * Returns a property value defined at a breakpoint.
+ */
+@function property-at-breakpoint($property, $breakpoint) {
+    @return map-get(lists-to-map($layouts-name, $property), $breakpoint);
+}
