@@ -5,6 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
   <title><?php echo $site->title()->html() ?> | <?php echo $page->title()->html() ?></title>
-  <?php echo liveCSS('assets/builds/bundle.css') ?>
+  <?php echo liveCSS('assets/css/main.css') ?>
 </head>
 <body>
